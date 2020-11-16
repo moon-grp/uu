@@ -4,7 +4,7 @@
       <v-col cols="6" md="6" sm="12">
         <div id="boxSpace">
           <div class="trs fnt mb-5">
-            signin to your <span class="coll">wish-list.</span>
+            sign in to your <span class="coll">wish-list.</span>
           </div>
 
           <v-row>
@@ -31,7 +31,7 @@
                 ></v-text-field>
               </div>
               <v-btn color="#6C63FF" class="fnt-p trs" outlined dark>
-                signin
+                sign in
               </v-btn>
             </v-col>
           </v-row>
