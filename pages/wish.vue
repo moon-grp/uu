@@ -2,45 +2,23 @@
   <div>
     <v-container>
       <div>
-        <v-row class="justify-center">
-          <v-card class="mx-auto" max-width="344">
-            <v-card-text>
-              <div>Word of the Day</div>
-              <p class="display-1 text--primary">el·ee·mos·y·nar·y</p>
-              <p>adjective</p>
-              <div class="text--primary">
-                relating to or dependent on charity; charitable.<br />
-                "an eleemosynary educational institution."
-              </div>
-            </v-card-text>
-            <v-card-actions>
-              <v-btn text color="teal accent-4" @click="reveal = true">
-                Learn More
-              </v-btn>
-            </v-card-actions>
-
-            <v-expand-transition>
-              <v-card
-                v-if="reveal"
-                class="transition-fast-in-fast-out v-card--reveal"
-                style="height: 100%"
+        <v-row class="centered">
+          <v-card class="mx-auto pt-6" width="500" elevation="5" tile>
+            <div class="mx-4">
+              <v-textarea
+                outlined
+                name="input-7-4"
+                label="pen it down"
+                class="text-capitalize"
+                color="#6C63FF"
+              ></v-textarea>
+            </div>
+            <v-card-actions class="mr-2 mb-2">
+              <v-spacer></v-spacer>
+              <v-btn outlined class="text-capitalize" color="#6C63FF"
+                >make a wish</v-btn
               >
-                <v-card-text class="pb-0">
-                  <p class="display-1 text--primary">Origin</p>
-                  <p>
-                    late 16th century (as a noun denoting a place where alms
-                    were distributed): from medieval Latin eleemosynarius, from
-                    late Latin eleemosyna ‘alms’, from Greek eleēmosunē
-                    ‘compassion’
-                  </p>
-                </v-card-text>
-                <v-card-actions class="pt-0">
-                  <v-btn text color="teal accent-4" @click="reveal = false">
-                    Close
-                  </v-btn>
-                </v-card-actions>
-              </v-card>
-            </v-expand-transition>
+            </v-card-actions>
           </v-card>
         </v-row>
       </div>
@@ -57,4 +35,12 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.centered {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+</style>
