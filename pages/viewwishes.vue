@@ -23,5 +23,19 @@ export default {
   data() {
     return {}
   },
+  methods: {
+    async getIncidents() {
+      try {
+         let res = await this.$store.dispatch('getWishes')
+      console.log(res)
+      } catch (error) {
+        console.log(error)
+      }
+     
+    },
+  },
+  mounted(){
+    this.getIncidents()
+  }
 }
 </script>
