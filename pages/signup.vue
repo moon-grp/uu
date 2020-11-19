@@ -71,6 +71,12 @@
         </div>
       </v-col>
     </v-row>
+    <v-snackbar v-model="snackbar" :timeout="timeout" color="success">
+      {{ msg }}
+    </v-snackbar>
+    <v-snackbar v-model="snackbarErr" :timeout="timeout" color="error">
+      {{ msg }}
+    </v-snackbar>
   </div>
 </template>
 
@@ -101,6 +107,10 @@ export default {
       email: null,
       password: null,
       loading: false,
+      snackbar: false,
+      snackbarErr: false,
+      timeout: 7000,
+      msg: '',
     }
   },
   methods: {
@@ -117,9 +127,13 @@ export default {
             email: this.email,
             password: this.password,
           })
+          this.msg = 'Account created'
+          this.snackbar = true
           this.loading = false
         } catch (error) {
-          console.log(error)
+          console.log(error.response)
+          this.msg = error.response.data
+          this.snackbarErr = true
           this.loading = false
         }
       } else {
