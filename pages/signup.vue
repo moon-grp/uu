@@ -129,6 +129,7 @@ export default {
           })
           this.msg = res.data.message
           console.log(res)
+           localStorage.setItem('token', JSON.stringify(res.data.token))
           this.snackbar = true
           this.loading = false
         } catch (error) {

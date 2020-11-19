@@ -116,6 +116,7 @@ export default {
             }
           )
           console.log(res)
+          localStorage.setItem('token', JSON.stringify(res.token))
           this.msg = res.message
           this.snackbar = true
 
