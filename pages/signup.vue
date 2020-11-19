@@ -127,7 +127,8 @@ export default {
             email: this.email,
             password: this.password,
           })
-          this.msg = 'Account created'
+          this.msg = res.data.message
+          console.log(res)
           this.snackbar = true
           this.loading = false
         } catch (error) {
