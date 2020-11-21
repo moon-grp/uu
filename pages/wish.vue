@@ -19,7 +19,12 @@
             </div>
             <v-card-actions class="mr-2 mb-2">
               <v-spacer></v-spacer>
-              <v-btn outlined class="text-capitalize" @click="makeAWish" color="#6C63FF"
+              <v-btn
+                outlined
+                class="text-capitalize"
+                @click="makeAWish"
+                color="#6C63FF"
+                :loading="loading"
                 >make a wish</v-btn
               >
             </v-card-actions>
@@ -27,6 +32,12 @@
         </v-row>
       </div>
     </v-container>
+      <v-snackbar v-model="snackbar" :timeout="timeout" color="success">
+      {{ msg }}
+    </v-snackbar>
+    <v-snackbar v-model="snackbarErr" :timeout="timeout" color="error">
+      {{ msg }}
+    </v-snackbar>
   </div>
 </template>
 
@@ -44,6 +55,10 @@ export default {
     return {
       loading: false,
       wish: null,
+      snackbar: false,
+      snackbarErr: false,
+      timeout: 7000,
+      msg: '',
     }
   },
   mounted() {
@@ -54,20 +69,22 @@ export default {
       //console.log(JSON.parse(localStorage.getItem('token')))
 
       try {
-        this.loading=true
+        this.loading = true
         var token = JSON.parse(localStorage.getItem('token'))
-        this.$axios.setHeader('Authorization', token)
+        // this.$axios.setHeader('Authorization', token)
         const res = await this.$axios.$post(
           'https://thewishlist.herokuapp.com/api/v1/wishit',
           {
-            wish:this.wish
+            wish: this.wish,
           }
         )
         console.log(res)
-        this.loading=false
+        this.loading = false
       } catch (error) {
-        console.log(error)
-        this.loading=false
+        console.log(error.response)
+        this.msg=error.response.data
+        this.snackbarErr=true
+        this.loading = false
       }
     },
   },
