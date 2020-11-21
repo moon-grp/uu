@@ -32,7 +32,7 @@
         </v-row>
       </div>
     </v-container>
-      <v-snackbar v-model="snackbar" :timeout="timeout" color="success">
+    <v-snackbar v-model="snackbar" :timeout="timeout" color="success">
       {{ msg }}
     </v-snackbar>
     <v-snackbar v-model="snackbarErr" :timeout="timeout" color="error">
@@ -61,17 +61,12 @@ export default {
       msg: '',
     }
   },
-  mounted() {
-    this.makeAWish()
-  },
+  mounted() {},
   methods: {
     async makeAWish() {
-      //console.log(JSON.parse(localStorage.getItem('token')))
-
       try {
         this.loading = true
-        var token = JSON.parse(localStorage.getItem('token'))
-        // this.$axios.setHeader('Authorization', token)
+
         const res = await this.$axios.$post(
           'https://thewishlist.herokuapp.com/api/v1/wishit',
           {
@@ -79,11 +74,17 @@ export default {
           }
         )
         console.log(res)
+        this.msg = res
+        this.snackbar = true
         this.loading = false
+        this.wish = ''
       } catch (error) {
         console.log(error.response)
-        this.msg=error.response.data
-        this.snackbarErr=true
+        this.msg = error.response.data
+        if (error.response.status === 401) {
+          this.msg = error.response.data.msg
+        }
+        this.snackbarErr = true
         this.loading = false
       }
     },

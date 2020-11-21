@@ -129,9 +129,10 @@ export default {
           })
           this.msg = res.data.message
           console.log(res)
-           localStorage.setItem('token', JSON.stringify(res.data.token))
+          localStorage.setItem('token', JSON.stringify(res.data.token))
           this.snackbar = true
           this.loading = false
+          this.$router.push({ name: 'wish' })
         } catch (error) {
           console.log(error.response)
           this.msg = error.response.data
