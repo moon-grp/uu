@@ -1,17 +1,16 @@
 <template>
   <div>
-    <v-card class="mx-auto" max-width="344">
+    <v-card
+      class="mx-auto"
+      max-width="344"
+      v-for="item in getWishes"
+      :key="item._id.$oid"
+    >
       <v-card-text>
-        <div>Word of the Day</div>
-        <p class="display-1 text--primary">be•nev•o•lent</p>
-        <p>adjective</p>
-        <div class="text--primary">
-          well meaning and kindly.<br />
-          "a benevolent smile"
-        </div>
+        {{ item.wish }}
       </v-card-text>
       <v-card-actions>
-        <v-btn text color="deep-purple accent-4"> Learn More </v-btn>
+        {{ item.name }}
       </v-card-actions>
     </v-card>
   </div>
@@ -23,19 +22,12 @@ export default {
   data() {
     return {}
   },
-  methods: {
-    async getIncidents() {
-      try {
-         let res = await this.$store.dispatch('getWishes')
-      console.log(res)
-      } catch (error) {
-        console.log(error)
-      }
-     
-    },
+  async asyncData({ $axios }) {
+    const getWishes = await $axios.$get(
+      'https://thewishlist.herokuapp.com/api/v1/viewtree'
+    )
+
+    return { getWishes }
   },
-  mounted(){
-    this.getIncidents()
-  }
 }
 </script>
