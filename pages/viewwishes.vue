@@ -1,24 +1,27 @@
 <template>
   <div>
-    <v-card
-      class="mx-auto"
-      max-width="344"
-      v-for="item in getWishes"
-      :key="item._id.$oid"
-    >
-      <v-card-text>
-        {{ item.wish }}
-      </v-card-text>
-      <v-card-actions>
-        {{ item.name }}
-      </v-card-actions>
-    </v-card>
+    <v-container>
+      <v-row class="mt-8">
+        <v-col cols="3" v-for="item in getWishes" :key="item._id.$oid">
+          <v-card class="mb-4" max-width="344" elevation="16" shaped>
+            <v-card-text class="text-capitalize subtitle-1">
+              <div class="txt">
+                {{ item.wish }}
+              </div>
+            </v-card-text>
+            <v-card-actions class="text-capitalize overline ml-2">
+              {{ item.name }}
+            </v-card-actions>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
 <script>
 export default {
-  layout: 'reg',
+  layout: 'view',
   data() {
     return {}
   },
@@ -31,3 +34,9 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.txt {
+  color: #6c63ff;
+}
+</style>

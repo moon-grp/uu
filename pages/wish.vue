@@ -45,7 +45,7 @@
 import { validationMixin } from 'vuelidate'
 import { required, minLength, email, sameAs } from 'vuelidate/lib/validators'
 export default {
-  layout: 'reg',
+  layout: 'wish',
   mixins: [validationMixin],
 
   validations: {
